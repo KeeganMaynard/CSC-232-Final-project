@@ -17,6 +17,7 @@ bank employees must be able to open or close an account
 		account holder info
 		opening and closing date
 		name of employee involved in opening/closing account
+	when trying to open or close account, traverse the linked list to see if the user is in the employee list -- might not be in this file
 
 bank employees must be able ot deposit or withdraw money from an account with the approval of the customer
 	customer must have some form of authentication in order to proceed
@@ -47,12 +48,13 @@ public:
 		head = nullptr;
 	}
 	//destructor
-	~BankOfficials();
+	~BankOfficials();	//check submission requirements to see if this is needed
 
 	//Linked List operations
 	void hireEmployee(T);	//add employee to the list
 	void fireEmployee(T);	//remove employee from the list
-	void loginIn(T);		//search employee
+	void loginIn(T);		//search employee --don't think this will be implemented here
+	bool isEmpty();			//check if list is empty
 };
 
 template <class T>
@@ -75,6 +77,7 @@ void BankOfficials<T>::hireEmployee(T newValue)
 	{
 		//start at the head
 		nodePtr = head;
+		prevNode = nullptr;
 
 		//traverse the nodes
 		while (nodePtr != nodePtr)
@@ -86,5 +89,63 @@ void BankOfficials<T>::hireEmployee(T newValue)
 		prevNode->next = newNode;
 		newNode->next = nodePtr;
 	}
+}
+
+template <class T>
+void BankOfficials<T>::fireEmployee(T value)
+{
+	listNode* nodePtr;	//node to traverse the list
+	listNode* tempNode;	//pointer to previous node
+
+	if (isEmpty())
+	{
+		cout << "Invalid operation. There must be at least one employee working.\n";
+		return;
+	}
+	else
+	{
+		nodePtr = head;		//nodePtr is assigned to the head
+		tempNode = nullptr;		//tempNode is assigned nullptr
+
+		if (nodePtr->value == value)	//if the node to be deleted is the head
+		{
+			tempNode = nodePtr;	//tempNode is assigned the value to be deleted
+			nodePtr = nodePtr->next;
+			delete tempNode;		//delete the value from the list
+			tempNode->next = nullptr;
+			return;
+		}
+		else  //if the first node is not to be deleted
+		{
+			while (nodePtr->value != value)		//while loop to traverse the list
+			{
+				tempNode = nodePtr;		//tempNode takes on nodePtr
+				nodePtr = nodePtr->next;	//nodePtr traverses the list
+			}
+
+			tempNode = nodePtr;		//tempNode is assigned the value to be deleted
+			nodePtr = nodePtr->next;
+			delete tempNode;		//delete the value from the list
+			tempNode->next = nullptr;
+			return;
+		}
+	}
+}
+
+template <class T>
+bool BankOfficials<T>::isEmpty()
+{
+	bool unoccupied;
+
+	if (head == nullptr)
+	{
+		unoccupied = true;
+	}
+	else
+	{
+		unoccupied = false;
+	}
+
+	return unoccupied;
 }
 #endif
