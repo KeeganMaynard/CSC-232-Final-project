@@ -2,13 +2,50 @@
 
 #include "BankOfficials.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main()
 {
-	//will need a while loop to keep the program from ending until necessary
+	bool run;
+	string userInput, exit;
 
-	//users will have to choose what type of user account they want to log in to
+	while (run)
+	{
+		//do you guys want to ask the user what type of account they are logging into, or should we just have them enter their information and then search
+		//each data structure for thier information
+		cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member" << endl;
+		getline(cin, userInput);
+		//will need an input to determine if the user is new or returning...
+		if (userInput == "1")
+		{
+			cout << "Return to main or exit?" << endl;
+			getline(cin, exit);
+			if (exit == "exit")
+			{
+				run = false;
+			}
+		}
+		else if (userInput == "2")
+		{
+			cout << "Return to main or exit?" << endl;
+			getline(cin, exit);
+			if (exit == "exit")
+			{
+				run = false;
+			}
+		}
+		else if (userInput == "3")
+		{
+			cout << "Return to main or exit?" << endl;
+			getline(cin, exit);
+			if (exit == "exit")
+			{
+				run = false;
+			}
+			//find a better way to end the program when the user wants
+		}
+	}
 
 }
 
