@@ -36,10 +36,10 @@ private:
 	struct ListNode
 	{
 		T value;
-		struct listNode *next;
+		struct ListNode *next;
 	};
 
-	listNode *head;
+	ListNode *head;
 
 public:
 	//constructor
@@ -60,12 +60,12 @@ public:
 template <class T>
 void BankOfficials<T>::hireEmployee(T newValue)
 {
-	listNode* newNode;	//a new node
-	listNode* nodePtr;	//node to traverse the list
-	listNode* prevNode;	//pointer to previous node
+	ListNode* newNode;	//a new node
+	ListNode* nodePtr;	//node to traverse the list
+	ListNode* prevNode;	//pointer to previous node
 
 	//create a new node and store the new value there
-	newNode = new listNode;
+	newNode = new ListNode;
 	newNode->value = newValue;
 
 	if (!head)	//if there are no employees
@@ -92,10 +92,16 @@ void BankOfficials<T>::hireEmployee(T newValue)
 }
 
 template <class T>
+void BankOfficials<T>::loginIn(T value)
+{
+	ListNode* nodePtr;	//node to traverse the list
+}
+
+template <class T>
 void BankOfficials<T>::fireEmployee(T value)
 {
-	listNode* nodePtr;	//node to traverse the list
-	listNode* tempNode;	//pointer to previous node
+	ListNode* nodePtr;	//node to traverse the list
+	ListNode* tempNode;	//pointer to previous node
 
 	if (isEmpty())
 	{
