@@ -7,17 +7,17 @@ using namespace std;
 int main()
 {
 	bool run = true;
-	/*
 	//cout << "Initial test statement" << endl;
 	BankOfficials <string> employeeList;
 	employeeList.hireEmployee("Keegan");
 	employeeList.loginIn("Keegan");
 	employeeList.hireEmployee("Nathan");
 	employeeList.loginIn("Nathan");
+	employeeList.hireEmployee("Aaron");
 	//employeeList.fireEmployee("Keegan");  //delete from root works
 	employeeList.fireEmployee("Nathan");
 	//employeeList.loginIn("Nathan");		//will break the program, need invalid input handler in function
-	*/
+	employeeList.loginIn("Aaron");
 
 	while (run)
 	{
