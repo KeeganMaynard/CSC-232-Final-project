@@ -62,7 +62,7 @@ void BankOfficials<T>::hireEmployee(T newValue)
 {
 	ListNode* newNode;	//a new node
 	ListNode* nodePtr;	//node to traverse the list
-	ListNode* prevNode;	//pointer to previous node
+	ListNode* prevNode = nullptr;	//pointer to previous node
 
 	//create a new node and store the new value there
 	newNode = new ListNode;
@@ -80,7 +80,7 @@ void BankOfficials<T>::hireEmployee(T newValue)
 		prevNode = nullptr;
 
 		//traverse the nodes
-		while (nodePtr != nodePtr)
+		while (nodePtr != nullptr)
 		{
 			prevNode = nodePtr;
 			nodePtr = nodePtr->next;
@@ -95,13 +95,32 @@ template <class T>
 void BankOfficials<T>::loginIn(T value)
 {
 	ListNode* nodePtr;	//node to traverse the list
+
+	nodePtr = head;
+
+	if (nodePtr->value == value)	//if the user is the first node
+	{
+		cout << nodePtr->value << endl;
+	}
+	else  //if the user is not the first node
+	{
+		while (nodePtr->value != value)
+		{
+			nodePtr = nodePtr->next;
+		}
+
+		cout << nodePtr->value << endl;
+		//include a way to check if the name entered is not on the list
+	}
+
 }
 
 template <class T>
 void BankOfficials<T>::fireEmployee(T value)
 {
 	ListNode* nodePtr;	//node to traverse the list
-	ListNode* tempNode;	//pointer to previous node
+	ListNode* tempNode;	//pointer to temporary node
+	ListNode* prevNode = nullptr; //pointer to previous node --might not need
 
 	if (isEmpty())
 	{
@@ -110,29 +129,32 @@ void BankOfficials<T>::fireEmployee(T value)
 	}
 	else
 	{
+		//need a check if deleting employee will result in 0
 		nodePtr = head;		//nodePtr is assigned to the head
 		tempNode = nullptr;		//tempNode is assigned nullptr
 
 		if (nodePtr->value == value)	//if the node to be deleted is the head
 		{
-			tempNode = nodePtr;	//tempNode is assigned the value to be deleted
+			tempNode = head;
 			nodePtr = nodePtr->next;
-			delete tempNode;		//delete the value from the list
-			tempNode->next = nullptr;
+			cout << "Removing " << tempNode->value << " from employee database" << endl;
+			delete tempNode;
+			head = nodePtr;		//needed a tracker to reassign head bc delete made it null
 			return;
 		}
 		else  //if the first node is not to be deleted
 		{
 			while (nodePtr->value != value)		//while loop to traverse the list
 			{
-				tempNode = nodePtr;		//tempNode takes on nodePtr
+				prevNode = nodePtr;		//prevNode takes on nodePtr
 				nodePtr = nodePtr->next;	//nodePtr traverses the list
 			}
 
-			tempNode = nodePtr;		//tempNode is assigned the value to be deleted
+			tempNode = nodePtr;
 			nodePtr = nodePtr->next;
-			delete tempNode;		//delete the value from the list
-			tempNode->next = nullptr;
+			cout << "Removing " << tempNode->value << " from employee database" << endl;
+			delete tempNode;
+			prevNode->next = nodePtr;
 			return;
 		}
 	}
@@ -153,5 +175,28 @@ bool BankOfficials<T>::isEmpty()
 	}
 
 	return unoccupied;
+}
+
+template <class T>
+BankOfficials<T>::~BankOfficials()
+{
+	ListNode* nodePtr;  // To traverse the list
+	ListNode* nextNode; // To point to the next node
+
+	// Position nodePtr at the head of the list.
+	nodePtr = head;
+
+	// While nodePtr is not at the end of the list...
+	while (nodePtr != nullptr)
+	{
+		// Save a pointer to the next node.
+		nextNode = nodePtr->next;
+
+		// Delete the current node.
+		delete nodePtr;
+
+		// Position nodePtr at the next node.
+		nodePtr = nextNode;
+	}
 }
 #endif
