@@ -55,6 +55,8 @@ public:
 	void fireEmployee(T);	//remove employee from the list
 	void loginIn(T);		//search employee --don't think this will be implemented here
 	bool isEmpty();			//check if list is empty
+	void openAccount();		//open a member's account(s)
+	void closeAccount();	//close a member's account(s)
 };
 
 template <class T>
