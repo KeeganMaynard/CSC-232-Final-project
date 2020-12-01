@@ -71,6 +71,11 @@ int main()
 				cout << "Enter the required Bank official login information:";
 				break;
 			}
+			default:
+			{
+				cout << "Invalid input. Please try again" << endl;
+				break;
+			}
 			}
 		}
 		else if (userInput == "3")
