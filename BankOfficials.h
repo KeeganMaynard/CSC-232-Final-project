@@ -57,6 +57,9 @@ public:
 	bool isEmpty();			//check if list is empty
 	void openAccount();		//open a member's account(s)
 	void closeAccount();	//close a member's account(s)
+	void deposit();			//deposit to an account with member's permission
+	void withdraw();		//withdraw from an account with member's permission
+	void searchAccount(T);	//search for an account(s) by account number, member name, or member phone number
 };
 
 template <class T>
