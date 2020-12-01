@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 //The main .cpp file for the project
 
 #include "BankOfficials.h"
+#include "OS.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -11,43 +11,71 @@ string decrypt(string);
 
 int main()
 {
-	bool run;
-	string userInput, exit;
+	bool run = true;
+	string userInput, exit, type;
+	BankOfficials<string> employeeList;
 
 	while (run)
 	{
-		//do you guys want to ask the user what type of account they are logging into, or should we just have them enter their information and then search
-		//each data structure for thier information
-		cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member\n [4] Exit" << endl;
-		getline(cin, userInput);
-		//will need an input to determine if the user is new or returning...
-        char input = userInput[0];
-        switch(input){
-            case '1'://System Admin
-            {
-                //
-            }
-            
-            case '2'://Bank Official
-            {
-                //
-            }
+		userInput = accountAge();
 
-            case '3'://Bank Member
-            {
-                //
-            }
+		if (userInput == "1")
+		{
+			cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member\n [4] Exit" << endl;
+			getline(cin, type);
+			char input = type[0];		//change this to a try-catch trying to convert type into an int if the length is 1
+			switch (input) {
 
-            case '4'://Exit
-            {
-                run = false;
-            }
+			case '1'://System Admin
+			{
+				cout << "option 1" << endl;
+				break;
+			}
 
-            default:
-            {
-                cout << "Invalid input. Please try again"
-            }
-        })
+			case '2'://Bank Official
+			{
+				cout << "option 2" << endl;
+				break;
+			}
+
+			case '3'://Bank Member
+			{
+				cout << "option 3" << endl;
+				break;
+			}
+
+			case '4'://Exit
+			{
+				run = false;
+				break;
+			}
+
+			default:
+			{
+				cout << "Invalid input. Please try again" << endl;
+				break;
+			}
+			}
+		}
+		else if (userInput == "2")
+		{
+			cout << "Choose desired type of account:\n [1] Bank Official Account\n [2] Bank Member Account" << endl;
+			getline(cin, type);
+			char input = type[0];
+			switch (input)
+			{
+			case '1'://bank official
+			{
+				cout << "Enter the require System administrator login information:";
+			}
+			}
+		}
+		else
+		{
+			cout << "Invalid input" << endl;
+			continue;
+		}
+		
 	}
 
 }
@@ -59,7 +87,7 @@ string encrypt(string s){ //Basic string encryption
     return s;
 }
 
-string encrypt(string s){ //Decryption key for strings
+string decrypt(string s){ //Decryption key for strings
     for (int i = 0; i < s.length(); i++){
         s[i] = s[i]-45;
     }
@@ -118,82 +146,4 @@ string encrypt(string s){ //Decryption key for strings
 	an applied monthly fee, and then allow the user the option to include the type of interest and the rate, as well as if there is fees and what that would
 	amount to. 
 */
-=======
-//branch version of bearbank
-#include <iostream>
-#include <string>
-#include "BankOfficials.h"
-using namespace std;
 
-int main()
-{
-	bool run = true;
-
-	BankOfficials <string> employeeList;
-	employeeList.hireEmployee("Keegan");
-	employeeList.loginIn("Keegan");
-	employeeList.hireEmployee("Nathan");
-	employeeList.loginIn("Nathan");
-	employeeList.hireEmployee("Aaron");
-	//employeeList.fireEmployee("Keegan");  //delete from root works
-	employeeList.fireEmployee("Nathan");
-	//employeeList.loginIn("Nathan");		//will break the program, need invalid input handler in function
-	employeeList.loginIn("Aaron");
-
-	while (run)
-	{
-		cout << "Enter a number: ";
-		string input = "";
-		int option = -1;
-		getline(cin, input);
-
-		try   //validate input
-		{
-			if (input.length() == 1)
-			{
-				option = stoi(input);
-			}
-			else
-			{
-				throw 1;
-			}
-		}
-		catch (...)
-		{
-			//display statement will be different after full implementation
-			cout << "Invalid input entered." << endl;
-			continue;
-		}
-
-		switch (option)
-		{
-		case 1:
-		{
-			cout << "1 was entered as the input" << endl;
-			break;
-		}
-
-		case 2:
-		{
-			cout << "2 was entered as the input" << endl;
-			break;
-		}
-		
-		case 3:
-		{
-			cout << "3 was entered as the input" << endl;
-			run = false;
-			break;
-		}
-
-		default:
-		{
-			cout << "Invalid input" << endl;
-			run = false;
-			break;
-		}
-		}
-	}
-	return 0;
-}
->>>>>>> BankPeople

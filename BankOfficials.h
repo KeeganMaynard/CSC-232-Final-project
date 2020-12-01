@@ -109,15 +109,19 @@ void BankOfficials<T>::loginIn(T value)
 	}
 	else  //if the user is not the first node
 	{
-		while (nodePtr->value != value)
+		//fix the code for if the value passed in is not in the linked list
+		while (nodePtr != nullptr)
 		{
-			nodePtr = nodePtr->next;
+			while (nodePtr->value != value)
+			{
+				nodePtr = nodePtr->next;
+			}
+
+			cout << nodePtr->value << endl;
 		}
-
-		cout << nodePtr->value << endl;
-		//include a way to check if the name entered is not on the list
+		
+		cout << "Invalid input entered" << endl;
 	}
-
 }
 
 template <class T>
