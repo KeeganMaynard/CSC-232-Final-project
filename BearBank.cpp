@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	bool run = true;
-	//cout << "Initial test statement" << endl;
+
 	BankOfficials <string> employeeList;
 	employeeList.hireEmployee("Keegan");
 	employeeList.loginIn("Keegan");
