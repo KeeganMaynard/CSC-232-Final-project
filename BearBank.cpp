@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //The main .cpp file for the project
 
 #include "BankOfficials.h"
@@ -117,3 +118,82 @@ string encrypt(string s){ //Decryption key for strings
 	an applied monthly fee, and then allow the user the option to include the type of interest and the rate, as well as if there is fees and what that would
 	amount to. 
 */
+=======
+//branch version of bearbank
+#include <iostream>
+#include <string>
+#include "BankOfficials.h"
+using namespace std;
+
+int main()
+{
+	bool run = true;
+
+	BankOfficials <string> employeeList;
+	employeeList.hireEmployee("Keegan");
+	employeeList.loginIn("Keegan");
+	employeeList.hireEmployee("Nathan");
+	employeeList.loginIn("Nathan");
+	employeeList.hireEmployee("Aaron");
+	//employeeList.fireEmployee("Keegan");  //delete from root works
+	employeeList.fireEmployee("Nathan");
+	//employeeList.loginIn("Nathan");		//will break the program, need invalid input handler in function
+	employeeList.loginIn("Aaron");
+
+	while (run)
+	{
+		cout << "Enter a number: ";
+		string input = "";
+		int option = -1;
+		getline(cin, input);
+
+		try   //validate input
+		{
+			if (input.length() == 1)
+			{
+				option = stoi(input);
+			}
+			else
+			{
+				throw 1;
+			}
+		}
+		catch (...)
+		{
+			//display statement will be different after full implementation
+			cout << "Invalid input entered." << endl;
+			continue;
+		}
+
+		switch (option)
+		{
+		case 1:
+		{
+			cout << "1 was entered as the input" << endl;
+			break;
+		}
+
+		case 2:
+		{
+			cout << "2 was entered as the input" << endl;
+			break;
+		}
+		
+		case 3:
+		{
+			cout << "3 was entered as the input" << endl;
+			run = false;
+			break;
+		}
+
+		default:
+		{
+			cout << "Invalid input" << endl;
+			run = false;
+			break;
+		}
+		}
+	}
+	return 0;
+}
+>>>>>>> BankPeople
