@@ -27,19 +27,19 @@ int main()
 
 			case 1://System Admin
 			{
-				cout << "option 1" << endl;
+				cout << "Enter System administrator login ID and password: " << endl;
 				break;
 			}
 
 			case 2://Bank Official
 			{
-				cout << "option 2" << endl;
+				cout << "Enter Bank official login ID and password: " << endl;
 				break;
 			}
 
 			case 3://Bank Member
 			{
-				cout << "option 3" << endl;
+				cout << "Enter Bank member login ID and password: " << endl;
 				break;
 			}
 
