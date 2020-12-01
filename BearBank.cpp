@@ -5,6 +5,9 @@
 #include <string>
 using namespace std;
 
+string encrypt(string);
+string decrypt(string);
+
 int main()
 {
 	bool run;
@@ -14,39 +17,52 @@ int main()
 	{
 		//do you guys want to ask the user what type of account they are logging into, or should we just have them enter their information and then search
 		//each data structure for thier information
-		cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member" << endl;
+		cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member\n [4] Exit" << endl;
 		getline(cin, userInput);
 		//will need an input to determine if the user is new or returning...
-		if (userInput == "1")
-		{
-			cout << "Return to main or exit?" << endl;
-			getline(cin, exit);
-			if (exit == "exit")
-			{
-				run = false;
-			}
-		}
-		else if (userInput == "2")
-		{
-			cout << "Return to main or exit?" << endl;
-			getline(cin, exit);
-			if (exit == "exit")
-			{
-				run = false;
-			}
-		}
-		else if (userInput == "3")
-		{
-			cout << "Return to main or exit?" << endl;
-			getline(cin, exit);
-			if (exit == "exit")
-			{
-				run = false;
-			}
-			//find a better way to end the program when the user wants
-		}
+        char input = userInput[0];
+        switch(input){
+            case '1'://System Admin
+            {
+                //
+            }
+            
+            case '2'://Bank Official
+            {
+                //
+            }
+
+            case '3'://Bank Member
+            {
+                //
+            }
+
+            case '4'://Exit
+            {
+                run = false;
+            }
+
+            default:
+            {
+                cout << "Invalid input. Please try again"
+            }
+        })
 	}
 
+}
+
+string encrypt(string s){ //Basic string encryption
+    for (int i = 0; i < s.length(); i++){
+        s[i] = s[i]+45;
+    }
+    return s;
+}
+
+string encrypt(string s){ //Decryption key for strings
+    for (int i = 0; i < s.length(); i++){
+        s[i] = s[i]-45;
+    }
+    return s;
 }
 
 //						PROJECT INFO
