@@ -12,7 +12,7 @@ string decrypt(string);
 int main()
 {
 	bool run = true;
-	string userInput, exit, type;
+	string userInput, exit;
 	BankOfficials<string> employeeList;
 
 	while (run)
@@ -21,32 +21,30 @@ int main()
 
 		if (userInput == "1")
 		{
-			cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member\n [4] Exit" << endl;
-			getline(cin, type);
-			char input = type[0];		//change this to a try-catch trying to convert type into an int if the length is 1
-			switch (input) {
+			int type = accountType();
+			
+			switch (type) {
 
-			case '1'://System Admin
+			case 1://System Admin
 			{
 				cout << "option 1" << endl;
 				break;
 			}
 
-			case '2'://Bank Official
+			case 2://Bank Official
 			{
 				cout << "option 2" << endl;
 				break;
 			}
 
-			case '3'://Bank Member
+			case 3://Bank Member
 			{
 				cout << "option 3" << endl;
 				break;
 			}
 
-			case '4'://Exit
+			case 4://Exit
 			{
-				run = false;
 				break;
 			}
 
@@ -59,25 +57,33 @@ int main()
 		}
 		else if (userInput == "2")
 		{
-			cout << "Choose desired type of account:\n [1] Bank Official Account\n [2] Bank Member Account" << endl;
-			getline(cin, type);
-			char input = type[0];
-			switch (input)
+			int newType = newAccountType();
+
+			switch (newType)
 			{
-			case '1'://bank official
+			case 1://new bank official account
 			{
 				cout << "Enter the require System administrator login information:";
+				break;
+			}
+			case 2://new bank member account
+			{
+				cout << "Enter the required Bank official login information:";
+				break;
 			}
 			}
+		}
+		else if (userInput == "3")
+		{
+			cout << "Goodbye!" << endl;
+			run = false;
 		}
 		else
 		{
 			cout << "Invalid input" << endl;
 			continue;
 		}
-		
 	}
-
 }
 
 string encrypt(string s){ //Basic string encryption
