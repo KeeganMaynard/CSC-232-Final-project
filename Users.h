@@ -39,6 +39,5 @@ public:
 
 	virtual void saveUser();
 	virtual void createUser(string fileID);
-
 };
 #endif
