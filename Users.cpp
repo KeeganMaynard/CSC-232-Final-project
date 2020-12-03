@@ -4,6 +4,17 @@
 Users::Users()
 {
 	//Default constructor
+	;
+}
+
+Users::Users(string name, string ID, string password, string type, string login)
+{
+	userName = name;
+	userID = ID;
+	userPass = password;
+	userType = type;
+	lastLogin = login;
+	lastActivity = "No activity has been found for this account.";
 }
 
 Users::Users(string name, string ID, string password, string type)
@@ -12,14 +23,7 @@ Users::Users(string name, string ID, string password, string type)
 	userID = ID;
 	userPass = password;
 	userType = type;
-}
-
-Users::Users(string name, string ID, string password, string type)
-{
-	userName = name;
-	userID = ID;
-	userPass = password;
-	userType = type;
+	lastLogin = "This account has not been accessed before.";
 }
 
 string Users::getName()
@@ -42,6 +46,16 @@ string Users::getUserType()
 	return userType;
 }
 
+string Users::getPastLogin()
+{
+	return lastLogin;
+}
+
+string Users::getActivity()
+{
+	return lastActivity;
+}
+
 void Users::setName(string newName)
 {
 	userName = newName;
@@ -62,10 +76,21 @@ void Users::setUserType(string type)
 	userType = type;
 }
 
-bool Users::validLogin(string newName, string newPass)
+void Users::setPastLogin(string login)
+{
+	lastLogin = login;
+}
+
+void Users::setActivity(string active)
+{
+	lastActivity = active;
+}
+
+bool Users::validLogin(string newName, string newPass, string time)
 {
 	if (userName == newName && userPass == newPass)
 	{
+		lastLogin = time;
 		return true;
 	}
 	else
@@ -84,6 +109,8 @@ void Users::saveUser()
 		outFile << userName << endl;
 		outFile << userPass << endl;
 		outFile << userType << endl;
+		outFile << lastLogin << endl;
+		outFile << lastActivity << endl;
 	}
 	else
 	{
@@ -113,11 +140,13 @@ void Users::createUser(string fileID)
 		userName = userInfo[1];
 		userPass = userInfo[2];
 		userType = userInfo[3];
+		lastLogin = userInfo[4];
+		lastActivity = userInfo[5];
 	}
 	else
 	{
 		cout << "The file: " << fileID << " cannot be read from at this time." << endl;
 	}
-	
+
 	inFile.close();
 }
