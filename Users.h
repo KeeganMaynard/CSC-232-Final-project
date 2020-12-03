@@ -9,8 +9,15 @@ using namespace std;
 
 class Users
 {
+protected:
+	string userName;
+	string userID;
+	string userPass;
+	string userType;
+	string lastLogin;
+	string lastActivity;
 public:
-	Users(){}
+	Users() {}
 	Users(string name, string ID, string password, string type, string login);
 	Users(string name, string ID, string password, string type);
 
@@ -18,20 +25,20 @@ public:
 	string getID();
 	string getPassword();
 	string getUserType();
+	string getPastLogin();
+	string getActivity();
 
 	void setName(string newName);
 	void setID(string newID);
 	void setPassword(string newPass);
 	void setUserType(string type);
+	void setPastLogin(string login);
+	void setActivity(string active);
 
-	bool validLogin(string newName, string newPass);
+	bool validLogin(string newName, string newPass, string time);
 
 	virtual void saveUser();
 	virtual void createUser(string fileID);
-protected:
-	string userName;
-	string userID;
-	string userPass;
-	string userType;
+
 };
 #endif
