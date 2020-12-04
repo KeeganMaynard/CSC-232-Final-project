@@ -45,7 +45,7 @@ int newAccountType()
 {
 	string option;
 	int newType;
-	cout << "Choose desired type of account:\n [1] Bank Official Account\n [2] Bank Member Account" << endl;
+	cout << "Choose desired type of account:\n [1] System Administrator Account\n [2] Bank Official Account\n [3] Bank Member Account" << endl;
 	getline(cin, option);
 	try
 	{
