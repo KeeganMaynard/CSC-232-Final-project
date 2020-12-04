@@ -20,9 +20,9 @@ int main()
 
 	while (run)
 	{
-		userInput = accountAge();
+		userInput = accountAge(); //Returns 1 if you already have an account, 2 if you want to make a new one, 3 to exit.
 
-		if (userInput == "1")
+		if (userInput == "1") //Logging into existing account
 		{
 			int type = accountType();
 
@@ -107,19 +107,19 @@ int main()
 			}
 			}
 		}
-		else if (userInput == "2")
+		else if (userInput == "2") //Creating a new one
 		{
-			int newType = newAccountType();
+			int newType = newAccountType(); //Returns 1 to create a System Admin, 2 to create Bank Official, and 3 to create a Bank Member
 
 			switch (newType)
 			{
-			case 1://new bank official account
+			case 1://new System Admin account
 			{
 				//gather user information for bank officials
 				cout << "Enter the require System administrator login information:";
 				break;
 			}
-			case 2://new bank member account
+			case 2://new bank official account
 			{
 				string firstName = "", lastName = "", phone = "", address = "", ID = "", password = "";
 				//gather user information for bank members
@@ -155,6 +155,10 @@ int main()
 				cout << "Enter the required Bank official login information:";
 				break;
 			}
+			case 3: //New bank member account
+			{
+				//Insert code here
+			}	
 			default:
 			{
 				cout << "Invalid input. Please try again" << endl;
@@ -162,7 +166,7 @@ int main()
 			}
 			}
 		}
-		else if (userInput == "3")
+		else if (userInput == "3") // Exit
 		{
 			cout << "Goodbye!" << endl;
 			run = false;
