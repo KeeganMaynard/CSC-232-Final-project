@@ -3,7 +3,7 @@
 #include "UserTypes/BankOfficials.h"
 #include "UserTypes/SystemAdmin.h"
 #include "UserTypes/UserAccounts.h"
-#include "Data Structs/DataController.h"
+#include "DataStructs/DataController.h"
 #include "UserTypes/Users.h"
 #include "OS.h"
 #include <iostream>
