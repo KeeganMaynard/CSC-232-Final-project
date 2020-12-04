@@ -3,9 +3,9 @@
 #define OS_H
 #include <iostream>
 #include <string>
-#include "BankOfficials.h"
-#include "SystemAdmin.h"
-#include "UserAccounts.h"
+#include "UserTypes/BankOfficials.h"
+#include "UserTypes/SystemAdmin.h"
+#include "UserTypes/UserAccounts.h"
 using namespace std;
 
 string accountAge()
