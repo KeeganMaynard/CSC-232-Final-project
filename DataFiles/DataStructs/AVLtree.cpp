@@ -341,7 +341,7 @@ node<T>* AVLTree<T>::rightmost(node<T>*& subRoot)
 }
 
 template <class T>
-node<T>* AVLTree<T>::delAssist(node<T>*& subRoot, T value)
+node<T>* AVLTree<T>::delAssist(node<T>*& subRoot, T value)//Recursive function that searches for a node based on a value and returns nullpointer
 {
     if (value < subRoot->value)
     {
@@ -510,7 +510,7 @@ node<T>* AVLTree<T>::delMappedItemAssist(node<T>*& subRoot, T value, T mappedIte
 template <class T>
 void AVLTree<T>::rotations(node<T>*& subRoot)
 {
-    int balance = getBalanced(subRoot);
+    int balance = getBalanced(subRoot); //Positive if left heavy, negative if right, 0 if completely balanced
     int leftBal = getBalanced(subRoot->left);
     int rightBal = getBalanced(subRoot->right);
 
