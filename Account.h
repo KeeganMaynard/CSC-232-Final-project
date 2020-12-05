@@ -28,7 +28,7 @@ public:
     double getMinimum();
     void setType(string type);
     string getType();
-    string gitAmount(double amount);
+    string getAmount(double amount);
     double round(double amount, int rounded);
 };
 
@@ -90,7 +90,7 @@ public:
     time_t getTerm();
     double getBalance();
     void setRestricted(bool condition);
-    void setUnrestrictued(bool condition);
+    void setUnrestricted(bool condition);
     bool getRestricted();
     bool getUnrestricted();
     string deposit(double amount);
