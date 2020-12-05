@@ -9,7 +9,7 @@ string encrypt(string s){
     {
         s[i] = s[i]+45; //Adding 45 to ASCII code
     }
-    cout << s << endl;
+    return s;
 }
 
 string decrypt(string s){
@@ -17,6 +17,7 @@ string decrypt(string s){
     {
         s[i] = s[i]-45; //Changing ASCII code back to normal
     }
+    return s;
 }
 
 #endif
