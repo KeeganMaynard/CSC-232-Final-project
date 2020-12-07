@@ -1,6 +1,11 @@
 //The main .cpp file for the project
 
-#include "BankOfficials.h"
+#include "UserTypes/BankOfficials.h"
+#include "UserTypes/SystemAdmin.h"
+#include "UserTypes/UserAccounts.h"
+#include "DataStructs/DataController.h"
+#include "UserTypes/Users.h"
+#include "OS.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -10,59 +15,185 @@ string decrypt(string);
 
 int main()
 {
-	bool run;
+	bool run = true;
 	string userInput, exit;
 
 	while (run)
 	{
-		//do you guys want to ask the user what type of account they are logging into, or should we just have them enter their information and then search
-		//each data structure for thier information
-		cout << "Login to your account type:\n [1] System Administrator\n [2] Bank Official\n [3] Bank Member\n [4] Exit" << endl;
-		getline(cin, userInput);
-		//will need an input to determine if the user is new or returning...
-        char input = userInput[0];
-        switch(input){
-            case '1'://System Admin
-            {
-                //
-            }
-            
-            case '2'://Bank Official
-            {
-                //
-            }
+		userInput = accountAge(); //Returns 1 if you already have an account, 2 if you want to make a new one, 3 to exit.
 
-            case '3'://Bank Member
-            {
-                //
-            }
+		if (userInput == "1") //Logging into existing account
+		{
+			int type = accountType();
 
-            case '4'://Exit
-            {
-                run = false;
-            }
+			switch (type) {
 
-            default:
-            {
-                cout << "Invalid input. Please try again"
-            }
-        })
+			case 1://System Admin
+			{
+				string ID = "", password = "", valid = "";
+				cout << "Enter System administrator login ID and password: " << endl;
+				cout << "Username: ";
+				getline(cin, ID);
+				cout << "Password: ";
+				getline(cin, password);
+				cout << endl;
+
+				valid = DataController::validLogin(ID, password);
+				if (valid == "false")
+				{
+					cout << "Invalid information entered. Please try again." << endl;
+				}
+				else
+				{
+					//log into system admin account
+				}
+				break;
+			}
+
+			case 2://Bank Official
+			{
+				string ID = "", password = "", valid = "";
+				cout << "Enter Bank official login ID and password: " << endl;
+				cout << "Username: ";
+				getline(cin, ID);
+				cout << "Password: ";
+				getline(cin, password);
+				cout << endl;
+
+				valid = DataController::validLogin(ID, password);
+				if (valid == "false")
+				{
+					cout << "Invalid information entered. Please try again." << endl;
+				}
+				else
+				{
+					//log into bank official account
+				}
+
+				break;
+			}
+
+			case 3://Bank Member
+			{
+				string ID = "", password = "", valid = "";
+				cout << "Enter Bank member login ID and password: " << endl;
+				cout << "Username: ";
+				getline(cin, ID);
+				cout << "Password: ";
+				getline(cin, password);
+				cout << endl;
+
+				valid = DataController::validLogin(ID, password);
+				if (valid == "false")
+				{
+					cout << "Invalid information entered. Please try again." << endl;
+				}
+				else
+				{
+					//log into bank member account
+				}
+				break;
+			}
+
+			case 4://Exit
+			{
+				break;
+			}
+
+			default:
+			{
+				cout << "Invalid input. Please try again" << endl;
+				break;
+			}
+			}
+		}
+		else if (userInput == "2") //Creating a new one
+		{
+			int newType = newAccountType(); //Returns 1 to create a System Admin, 2 to create Bank Official, and 3 to create a Bank Member
+
+			switch (newType)
+			{
+			case 1://new System Admin account
+			{
+				//gather user information for bank officials
+				cout << "Enter the require System administrator login information:";
+				break;
+			}
+			case 2://new bank official account
+			{
+				string firstName = "", lastName = "", phone = "", address = "", ID = "", password = "";
+				//gather user information for bank members
+				cout << "To create an account, please enter your personal information:\n";
+				cout << "First name: ";
+				getline(cin, firstName);
+				cout << "\nLast name: ";
+				getline(cin, lastName);
+				cout << "\nPhone Number: ";
+				getline(cin, phone);
+				cout << "\nAddress: ";
+				getline(cin, address);
+
+				//create new account
+				bool valid;
+				cout << "Please enter your user ID and a secure password: ";
+				cout << "User ID: ";
+				getline(cin, ID);
+
+				//check to make sure user ID is not already in use
+				valid = DataController::availableUser(ID);
+				while (valid == false)
+				{
+					cout << "That user ID is already in unavailable. Please enter a different ID: ";
+					getline(cin, ID);
+				}
+
+				//create the password
+				cout << "\nPasword: ";
+				getline(cin, password);
+
+				//create the member to save to the file
+				cout << "Enter the required Bank official login information:";
+				break;
+			}
+			case 3: //New bank member account
+			{
+				//Insert code here
+			}	
+			default:
+			{
+				cout << "Invalid input. Please try again" << endl;
+				break;
+			}
+			}
+		}
+		else if (userInput == "3") // Exit
+		{
+			cout << "Goodbye!" << endl;
+			run = false;
+		}
+		else
+		{
+			cout << "Invalid input. Please try again" << endl;
+			continue;
+		}
 	}
 
+	//save all the changes made to files
+	return 0;
 }
 
-string encrypt(string s){ //Basic string encryption
-    for (int i = 0; i < s.length(); i++){
-        s[i] = s[i]+45;
-    }
-    return s;
+string encrypt(string s) { //Basic string encryption
+	for (int i = 0; i < s.length(); i++) {
+		s[i] = s[i] + 45;
+	}
+	return s;
 }
 
-string encrypt(string s){ //Decryption key for strings
-    for (int i = 0; i < s.length(); i++){
-        s[i] = s[i]-45;
-    }
-    return s;
+string decrypt(string s) { //Decryption key for strings
+	for (int i = 0; i < s.length(); i++) {
+		s[i] = s[i] - 45;
+	}
+	return s;
 }
 
 //						PROJECT INFO
@@ -113,7 +244,7 @@ string encrypt(string s){ //Decryption key for strings
 		fixed or variable interest rate
 		penalty/service fees
 	I think we should include an account type that is not implemented in the program but has the ability to be. In the accounts header file, we would make
-	a function (newAccountType of something) that will not be included in this .cpp file. It can allow the user to choose the name through a string, have 
+	a function (newAccountType of something) that will not be included in this .cpp file. It can allow the user to choose the name through a string, have
 	an applied monthly fee, and then allow the user the option to include the type of interest and the rate, as well as if there is fees and what that would
-	amount to. 
+	amount to.
 */
