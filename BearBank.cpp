@@ -1,10 +1,10 @@
 //The main .cpp file for the project
 
-#include "UserTypes/BankOfficials.h"
-#include "UserTypes/SystemAdmin.h"
-#include "UserTypes/UserAccounts.h"
+#include "DataFile/UserTypes/BankOfficials.h"
+#include "DataFile/UserTypes/SystemAdmin.h"
+#include "DataFile/UserTypes/UserAccounts.h"
 #include "DataStructs/DataController.h"
-#include "UserTypes/Users.h"
+#include "DataFile/UserTypes/Users.h"
 #include "OS.h"
 #include <iostream>
 #include <string>
